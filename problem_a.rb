@@ -2,8 +2,8 @@ class Cup
     attr_accessor :colour, :radius
 
     def initialize(colour, radius)
-        colour = ""
-        radius = 0
+        @colour = colour
+        @radius = radius
     end
 end
 
@@ -11,16 +11,11 @@ cups = []
 
 puts "How many cups are there?"
 gets.to_i.times do |n| 
-  puts "Enter Cup-#{n+1} colour & radius:"
-  value = gets.split " "
-  print value[0]
-    if
-        value[0].to_i.is_a?(Integer)
-        print value
-        value.first.to_i/2
-        value.reverse
-        cups << Cup.new(value[0], value[1])
-    end 
-        cups << Cup.new(value[0], value[1])
+  puts "Enter Cup-#{n+1}"
+  value = gets.chomp.split(" ")
+  order = Integer(value[0]) rescue false 
+  cups << (order ? Cup.new(value[1], (value[0].to_i)/2) : 
+                   Cup.new(value[0], value[1].to_i))
 end
-    # print cups(colour).sort_by { |cup| cup.radius }
+cups.sort_by { |cup| cup.radius }.each { |cup| puts cup.colour } 
+
