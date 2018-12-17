@@ -13,11 +13,11 @@ puts "How many cups are there?"
 gets.to_i.times do |n| 
   puts "Enter Cup-#{n+1} colour & radius:"
   value = gets.split " "
-  print value
+  print value[0]
     if
         value[0].to_i.is_a?(Integer)
         print value
-        value.first / 2
+        value.first.to_i/2
         value.reverse
         cups << Cup.new(value[0], value[1])
     end 
